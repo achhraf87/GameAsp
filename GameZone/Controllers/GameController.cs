@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using GameZone.Services;
 using GameZone.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Composition;
+using ClosedXML.Excel;
 
 namespace GameZone.Controllers
 {
@@ -41,6 +43,8 @@ namespace GameZone.Controllers
         //}
         public IActionResult Index(string searchTerm, int pageNumber = 1, int pageSize = 5)
         {
+            ViewBag.SearchTerm = searchTerm;
+
             var query = _gamesService.GetAll();
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -62,6 +66,51 @@ namespace GameZone.Controllers
 
             return View(games);
         }
+
+        public async Task<IActionResult> ExportToExcel(string searchTerm)
+        {
+            var query = _gamesService.GetAll(); // Remplacez cela par votre méthode pour récupérer tous les jeux depuis le service.
+
+            // Appliquer le filtre de recherche si un terme de recherche est spécifié
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(g => g.Name.Contains(searchTerm) || g.Category.Name.Contains(searchTerm));
+            }
+
+            var games = query.ToList();
+           
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Games");
+                var currentRow = 1;
+
+                // Ajouter les en-têtes
+                worksheet.Cell(currentRow, 1).Value = "Name";
+                worksheet.Cell(currentRow, 2).Value = "Category";
+
+                // Remplir les données
+                foreach (var game in games)
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = game.Name;
+                    worksheet.Cell(currentRow, 2).Value = game.Category.Name;
+                }
+
+                // Rendre le fichier de travail en mémoire
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+
+                    // Retourner le fichier Excel en tant que résultat de l'action
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "les candidats.xlsx");
+                }
+            }
+        }
+
+
+
 
 
 

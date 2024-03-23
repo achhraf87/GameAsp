@@ -523,3 +523,10 @@ C:\Users\hp\Desktop\GameAsp\GameZone\obj\Debug\net8.0\refint\GameZone.dll
 C:\Users\hp\Desktop\GameAsp\GameZone\obj\Debug\net8.0\GameZone.pdb
 C:\Users\hp\Desktop\GameAsp\GameZone\obj\Debug\net8.0\GameZone.genruntimeconfig.cache
 C:\Users\hp\Desktop\GameAsp\GameZone\obj\Debug\net8.0\ref\GameZone.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\Irony.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\hp\Desktop\GameAsp\GameZone\bin\Debug\net8.0\XLParser.dll
