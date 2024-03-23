@@ -4,6 +4,7 @@ using GameZone.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GameZone.Services;
 using GameZone.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameZone.Controllers
 {
@@ -22,11 +23,54 @@ namespace GameZone.Controllers
             _gamesService = gamesService;
         }
 
-        public IActionResult Index()
+        //public IActionResult Index(int pageNumber = 1, int pageSize = 5)
+        //{
+        //    var games = _gamesService.GetAll().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        //    var totalGames = _gamesService.GetAll().Count();
+        //    var totalPages = (int)Math.Ceiling(totalGames / (double)pageSize);
+
+        //    var paginationInfo = new PaginationInfo
+        //    {
+        //        PageNumber = pageNumber,
+        //        TotalPages = totalPages
+        //    };
+
+        //    ViewData["PaginationInfo"] = paginationInfo;
+
+        //    return View(games);
+        //}
+        public IActionResult Index(string searchTerm, int pageNumber = 1, int pageSize = 5)
         {
-            var games = _gamesService.GetAll();
+            var query = _gamesService.GetAll();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(g => g.Name.Contains(searchTerm) || g.Category.Name.Contains(searchTerm));
+            }
+
+            var games = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var totalGames = query.Count();
+            var totalPages = (int)Math.Ceiling(totalGames / (double)pageSize);
+
+            var paginationInfo = new PaginationInfo
+            {
+                PageNumber = pageNumber,
+                TotalPages = totalPages
+            };
+
+            ViewData["PaginationInfo"] = paginationInfo;
+
             return View(games);
         }
+
+
+
+
+        //public IActionResult Index()
+        //{
+        //    var games = _gamesService.GetAll();
+        //    return View(games);
+        //}
 
         public IActionResult Details(int id)
         {
