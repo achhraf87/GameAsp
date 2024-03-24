@@ -1,24 +1,37 @@
 ﻿@using GameZone.Settings
-@model IEnumerable<Game>
+@* @model IEnumerable<Game> *@
+@model ResponseGameDTO
+
+
 @{
     ViewData["Title"] = "Games";
-    var paginationInfo = ViewData["PaginationInfo"] as PaginationInfo;
+    //var paginationInfo = ViewData["PaginationInfo"] as PaginationInfo;
+
 }
 
-<a class="btn btn-secondary btn-lg" asp-action="Create">
-    <i class="bi bi-plus-circle-dotted"></i>
-    Add Game
-</a>
 
-<!-- Bouton pour imprimer en Excel -->
-<div class="mt-3">
-    <form asp-action="ExportToExcel" method="post">
-        <input type="hidden" name="searchTerm" value="@ViewBag.SearchTerm" />
-        <button type="submit" class="btn btn-success">Export to Excel</button>
-    </form>
+<div class="d-flex bd-highlight">
+    <div class="p-2 w-100 bd-highlight">
+        <a class="btn btn-secondary btn-lg" asp-action="Create">
+            @* <i class="bi bi-plus-circle-dotted"></i> *@
+            <i class="bi bi-person-fill-add"></i>
+            Add Game
+        </a>
+    </div>
+    <div class="p-2 flex-shrink-1 bd-highlight">
+        <!-- Bouton pour imprimer en Excel -->
+        <div class="mt-3">
+            <form asp-action="ExportToExcel" method="post">
+                <input type="hidden" name="searchTerm" value="@ViewBag.SearchTerm" />
+                <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"></i>Exporter</button>
+            </form>
+        </div>
+    </div>
 </div>
 
-@if (!Model.Any())
+
+
+@if (!Model.Data.Any())
 {
     <div class="alert alert-warning mt-5">
         <h4 class="alert-heading">No games!</h4>
@@ -33,7 +46,7 @@ else
             <div class="input-group">
                 <input type="text" class="form-control" name="searchTerm" placeholder="Search by Name or Category">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                 </div>
             </div>
         </form>
@@ -54,7 +67,7 @@ else
     <div class="mt-5">
         <table class="table table-bordered border-primary">
             <tbody>
-                @foreach (var game in Model)
+                @foreach (var game in Model.Data)
                 {
                     <tr class="border-1 border-success">
                         <td>
@@ -84,14 +97,14 @@ else
         </table>
 
         <!-- Ajouter les liens de pagination -->
-        @if (paginationInfo != null && paginationInfo.TotalPages > 1)
+        @if (Model.pagination != null && Model.RecordTotal > 1)
         {
             <div class="mt-5">
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        @for (int i = 1; i <= paginationInfo.TotalPages; i++)
+                        @for (int i = 1; i <= Model.pagination.TotalPages; i++) 
                         {
-                            <li class="page-item @(i == paginationInfo.PageNumber ? "active" : "")">
+                            <li class="page-item @(i == Model.pagination.PageNumber ? "active" : "")">
                                 <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
                             </li>
                         }
@@ -99,6 +112,12 @@ else
                 </nav>
             </div>
         }
+
+        <div class="text">
+            @($"total {this.Model.RecordFiltred}/{this.Model.RecordTotal}")
+        </div>
+
+        
 
     </div>
 

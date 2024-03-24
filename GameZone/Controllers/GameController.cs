@@ -47,10 +47,17 @@ namespace GameZone.Controllers
 
             var query = _gamesService.GetAll();
 
+            var response = new ResponseGameDTO()
+            {
+                RecordTotal = query.Count(),
+            };
+
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 query = query.Where(g => g.Name.Contains(searchTerm) || g.Category.Name.Contains(searchTerm));
             }
+
+            response.RecordFiltred = query.Count();
 
             var games = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
             var totalGames = query.Count();
@@ -62,9 +69,16 @@ namespace GameZone.Controllers
                 TotalPages = totalPages
             };
 
-            ViewData["PaginationInfo"] = paginationInfo;
+            //ViewData["PaginationInfo"] = paginationInfo;
+            //TODO : return la liste / record filtred / record total
 
-            return View(games);
+            response.pagination = paginationInfo;
+
+            response.Data = games;
+
+            //ViewBag.response = response;
+
+            return View(response);
         }
 
         public async Task<IActionResult> ExportToExcel(string searchTerm)

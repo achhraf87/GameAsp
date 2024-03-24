@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WgIZwcHs9FLv4Jg0mFi24I9radrveTKwvluQE32pp9g=",
+  "Hash": "yengzdeozp1dwX+Eq5S6z+J73R3eXmcNZw8XVrop1P4=",
   "Source": "GameZone",
   "BasePath": "_content/GameZone",
   "Mode": "Default",
@@ -93,6 +93,25 @@
       "OriginalItemSpec": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\GameZone.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\assests\\images\\games\\0b308dfd-9632-4902-8c95-20110412a792.jpg",
+      "SourceId": "GameZone",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\",
+      "BasePath": "_content/GameZone",
+      "RelativePath": "assests/images/games/0b308dfd-9632-4902-8c95-20110412a792.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assests\\images\\games\\0b308dfd-9632-4902-8c95-20110412a792.jpg"
+    },
+    {
       "Identity": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\assests\\images\\games\\114bfeb0-a3dd-4fde-97d4-ba026126171d.jpg",
       "SourceId": "GameZone",
       "SourceType": "Discovered",
@@ -148,25 +167,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assests\\images\\games\\322358fb-55a2-4c84-a512-b8b619033d62.jfif"
-    },
-    {
-      "Identity": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\assests\\images\\games\\42b888a9-164b-4736-abec-072282fd8e39.png",
-      "SourceId": "GameZone",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\",
-      "BasePath": "_content/GameZone",
-      "RelativePath": "assests/images/games/42b888a9-164b-4736-abec-072282fd8e39.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assests\\images\\games\\42b888a9-164b-4736-abec-072282fd8e39.png"
     },
     {
       "Identity": "C:\\Users\\hp\\Desktop\\GameAsp\\GameZone\\wwwroot\\assests\\images\\games\\72c7c41c-f190-44b0-8f13-5f523445e180.png",
